@@ -76,7 +76,6 @@ const handleCallbackResponse = (req, res, next) => {
         // const refreshToken = credentials.refresh_token;
         // NOTE: For security, accessToken can be encrypted
         res.cookie('accessToken',accessToken, { httpOnly: true });
-        // res.cookie('refreshToken',refreshToken, { httpOnly: true });
         res.redirect(`${clientUrl}/?authorized=true`);
       })
       .catch(next);
@@ -84,39 +83,6 @@ const handleCallbackResponse = (req, res, next) => {
     res.redirect(`${clientUrl}/login`);
   }
 };
-
-// const refreshAccessToken = () => {
-//   const url = 'https://accounts.spotify.com/api/token';
-
-//   const data = {
-//     grant_type: 'refresh_token',
-//     refresh_token: refreshToken,
-//   };
-
-//   const headers = {
-//     'Content-Type': 'application/x-www-form-urlencoded',
-//     Authorization: authorizationHeaderStr,
-//   };
-
-//   const searchParams = new URLSearchParams();
-
-//   Object.keys(data).forEach(prop => {
-//     searchParams.set(prop, data[prop]);
-//   });
-
-//   return fetch(url, {
-//     method: 'POST',
-//     headers,
-//     body: searchParams,
-//   })
-//     .then(res => res.json())
-//     .then(credentials => {
-//       const accessToken = credentials.access_token;
-//       res.redirect(`${clientUrl}/?authorized=true&accessToken=${accessToken}`);
-//     }).catch(error => {
-//       console.log(error);
-//     });
-// };
 
 const convertMSToLength = (ms) => {
   let duration = 'Unavailable';
@@ -131,12 +97,7 @@ const convertMSToLength = (ms) => {
 
 const getRecentlyPlayed = (req, res, next) => {
   const accessToken = req.cookies.accessToken;
-  // const cookies = req.cookies;
-  // Object.keys(cookies).forEach(prop => {
-  //   console.log(cookies[prop]);
-  // });
   if(accessToken){
-    // console.log('in recently played');
     const url = 'https://api.spotify.com/v1/me/top/tracks?limit=100&time_range=long_term';
 
     return fetch(url, {
@@ -148,7 +109,6 @@ const getRecentlyPlayed = (req, res, next) => {
       },
     }).then(apiResponse => apiResponse.json())
       .then(data => {
-        console.log(data.items);
         let topTracks = [];
         if(data.items){
           topTracks = data.items.map((item) => {
@@ -178,7 +138,6 @@ app.get('/login', authorizeSpotify);
 app.get('/callback', handleCallbackResponse);
 app.get('/recently-played', getRecentlyPlayed);
 app.get('/logout', handleLogout);
-
 
 app.set('port', process.env.PORT || 5000);
 const server = app.listen(app.get('port'), () => {
