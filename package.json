@@ -5,10 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd front-app && npm install && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gaurav Shah",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",

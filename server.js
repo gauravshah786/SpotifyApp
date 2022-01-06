@@ -16,6 +16,9 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'front-app/build')));
+
 const generateRandomString = () => {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -214,6 +217,11 @@ app.get('/user-name', getUsername);
 app.get('/user-top-tracks', getUserTopTracks);
 app.get('/top-tracks-2021', getYearTopTracks);
 app.get('/logout', handleLogout);
+
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (_, res) => {
+  res.sendFile(path.join(__dirname + '/front-app/build/index.html'))
+})
 
 app.set('port', process.env.PORT || 5000);
 const server = app.listen(app.get('port'), () => {
