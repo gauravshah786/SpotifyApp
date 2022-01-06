@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const fetch = require('node-fetch');
+const path = require('path');
 const spotify = require('./credentials');
 
 const clientUrl = process.env.CLIENT_URL;
@@ -85,8 +86,8 @@ const handleCallbackResponse = (req, res, next) => {
         // NOTE: For security, accessToken should be encrypted
         // and serve over https only
         // TODO: before deployment httponly and secure 
-        // res.cookie('accessToken', accessToken, { httpOnly: true, secure: true });
-        res.cookie('accessToken', accessToken, { httpOnly: true });
+        res.cookie('accessToken', accessToken, { httpOnly: true, secure: true });
+        // res.cookie('accessToken', accessToken, { httpOnly: true });
         // in prod, you would have user/session id generated and saved in db
         // implementing simple cookie for storage less demo
         res.cookie('authenticated', true);
