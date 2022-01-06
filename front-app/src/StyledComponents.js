@@ -70,3 +70,28 @@ export const StyledButton = styled.button`
     padding: 0.325rem 1.075rem;
     text-decoration: none;
 `;
+
+export const StyledUsername = styled.div`
+    color: white;
+    padding-right: 1rem;
+`;
+
+export const StyledLoadingRow = styled(StyledFlexDiv)`
+    height: 3rem;
+`;
+
+export const StyledListContainer = styled.ul`
+  display: flex;
+  list-style: none;
+`;
+
+export const StyledListItem = styled.li`
+  color: #a6266e;
+  font-weight: ${props => props.selected ? 'bold' : ''};
+  margin-right: 5px;
+  visibility: ${props => props.disabled ? 'hidden' : 'visible' };
+  &:hover {
+    background: 0 0;
+    cursor: pointer;
+  }
+`;

@@ -1,24 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { usePagination, DOTS } from './usePagination';
-import { StyledFlexDiv } from './StyledComponents';
-
-const StyledListContainer = styled.ul`
-  display: flex;
-  list-style: none;
-`
-
-const StyledListItem = styled.li`
-  color: #a6266e;
-  font-weight: ${props => props.selected ? 'bold' : ''};
-  margin-right: 5px;
-  visibility: ${props => props.disabled ? 'hidden' : 'visible' };
-  &:hover {
-    background: 0 0;
-    cursor: pointer;
-  }
-`;
+import { DOTS, usePagination } from './hooks/usePagination';
+import { 
+  StyledFlexDiv,
+  StyledListContainer,
+  StyledListItem
+} from './StyledComponents';
 
 const Pagination = props => {
   const {

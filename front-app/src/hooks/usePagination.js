@@ -10,12 +10,12 @@ const range = (start, end) => {
  return a;
 };
 
-export const usePagination = ({
+export function usePagination({
   totalResults,
   pageSize,
   siblingCount = 1,
   currentPage
-}) => {
+}) {
   const paginationRange = useMemo(() => {
     const totalPages = Math.ceil(totalResults / pageSize);
 

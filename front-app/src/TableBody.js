@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import Player from './Player';
 import { StyledBodyContainer, StyledCell, StyledDataRow } from './StyledComponents';
+
+const StyledExplicitCell = styled(StyledCell)`
+    text-transform: capitalize;
+`;
 
 const getBody = (data, columnsWidth, playingId, callback) => {
     const body = data.map((row) => {
@@ -16,6 +21,9 @@ const getBody = (data, columnsWidth, playingId, callback) => {
                 <StyledCell> 
                     {row.length} 
                 </StyledCell>
+                <StyledExplicitCell> 
+                    {row.explicit.toString()} 
+                </StyledExplicitCell>
                 <StyledCell> 
                 {
                     row.previewURL

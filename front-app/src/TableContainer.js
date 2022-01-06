@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
+import { StyledLoadingRow } from './StyledComponents';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
 import TableHeader from './TableHeader';
-import usePrevious from './usePrevious';
+import usePrevious from './hooks/usePrevious';
 
-
-const TableContainer = ({data}) => {
+const TableContainer = ({url, dataProp}) => {
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const defaultPageSize = 10, defaultPage = 1;
     const [pageSize, setPageSize] = useState(defaultPageSize);
     const [showData, setShowData] = useState(data);
@@ -16,9 +18,34 @@ const TableContainer = ({data}) => {
         {id: 1, label: 'Track Name'},
         {id: 2, label: 'Album Name'},
         {id: 3, label: 'Length'},
-        {id: 4, label: 'Play Preview'}
+        {id: 4, label: 'Explicit'},
+        {id: 5, label: 'Play Preview'}
     ];
-    const columnsWidth = '30% 30% 15% 15%';
+    const columnsWidth = '30% 30% 15% 10% 15%';
+
+    useEffect(() => {
+        setIsLoading(true);
+        fetch(url)
+            .then(res => {
+                if(!res.ok) throw Error(res.json());
+                return res.json();
+            }).then(response => {
+                const formatted = response[dataProp].map(item => {
+                    return {
+                        id: item.id,
+                        name: item.name,
+                        album: item.album,
+                        length: item.length,
+                        explicit: item.explicit,
+                        previewURL: item.previewURL
+                    }
+                });
+                setData(formatted);
+                setIsLoading(false);
+            }).catch(error => {
+                console.log(error);
+            });
+    }, [url, dataProp]);
 
     useEffect(() => {
         let start, end;
@@ -31,26 +58,34 @@ const TableContainer = ({data}) => {
             end = currentPage * pageSize;
         }
         const formattedData = data.slice(start, end);
-        console.log(formattedData);
         setShowData(formattedData);
     }, [currentPage, data, pageSize, prevPageSize]);
 
     return (
         <>
-            {/* <Table data={showData}></Table> */}
-            <TableHeader columns={columns} columnsWidth={columnsWidth}>
-            </TableHeader>
-            <TableBody data={showData} columnsWidth={columnsWidth}>
-            </TableBody>
-            <TableFooter 
-                defaultPageSize={defaultPageSize}
-                totalResults={data.length}
-                pageSize={pageSize}
-                setPageSize={setPageSize}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-            >
-            </TableFooter>
+        {
+            isLoading 
+            ? <StyledLoadingRow> Loading ... </StyledLoadingRow>
+            :
+            <>
+                <TableHeader
+                    columns={columns}
+                    columnsWidth={columnsWidth}>
+                </TableHeader>
+                <TableBody
+                    data={showData}
+                    columnsWidth={columnsWidth}>
+                </TableBody>
+                <TableFooter
+                    defaultPageSize={defaultPageSize}
+                    totalResults={data.length}
+                    pageSize={pageSize}
+                    setPageSize={setPageSize}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}>
+                </TableFooter>
+            </>
+        }
         </>
     );
 };

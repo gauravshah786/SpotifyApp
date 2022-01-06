@@ -1,17 +1,23 @@
 import React from 'react';
 
-import TableContainer from './TableContainer';
 import Tabs from './Tabs';
+import TableContainer from './TableContainer';
 
-const Content = ({data}) => {
+const Content = () => {
     return (
         <div>
             <Tabs defaultTab='My Top Tracks'>
                 <div label='My Top Tracks'>
-                    <TableContainer data={data}></TableContainer>
+                    <TableContainer
+                        dataProp={'topTracks'}
+                        url={'/user-top-tracks'}>
+                    </TableContainer>
                 </div>
-                <div label='Work In Progress'>
-                    Project halted due to inflation ;-)
+                <div label='Top Tracks Of 2021'>
+                    <TableContainer
+                        dataProp={'yearTracks'}
+                        url={'/top-tracks-2021'}>
+                    </TableContainer>
                 </div>
             </Tabs>
         </div>
@@ -19,4 +25,3 @@ const Content = ({data}) => {
 };
 
 export default Content;
-
