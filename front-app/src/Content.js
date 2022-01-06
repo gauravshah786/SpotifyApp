@@ -10,13 +10,13 @@ const Content = () => {
                 <div label='My Top Tracks'>
                     <TableContainer
                         dataProp={'topTracks'}
-                        url={'/user-top-tracks'}>
+                        url={'user-top-tracks'}>
                     </TableContainer>
                 </div>
                 <div label='Top Tracks Of 2021'>
                     <TableContainer
                         dataProp={'yearTracks'}
-                        url={'/top-tracks-2021'}>
+                        url={'top-tracks-2021'}>
                     </TableContainer>
                 </div>
             </Tabs>

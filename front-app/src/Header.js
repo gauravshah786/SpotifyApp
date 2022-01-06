@@ -10,8 +10,9 @@ import {
     StyledUsername
 } from './StyledComponents';
 
-const LOGIN_URL = 'https://spotify-app-demo.herokuapp.com:5000/login';
-const LOGOUT_URL = 'https://spotify-app-demo.herokuapp.com:5000/logout';
+const BASE_URL = 'https://spotify-app-demo.herokuapp.com';
+const LOGIN_URL = `${BASE_URL}/login`;
+const LOGOUT_URL = `${BASE_URL}/logout`;
 
 const StyledContainer = styled(StyledFlexDiv)`
     padding-right: 1rem;
@@ -20,7 +21,7 @@ const StyledContainer = styled(StyledFlexDiv)`
 const Header = ({isUserAuthenticated, setIsUserAuthenticated}) => {
     const [username, setUsername] = useState('');
     if(isUserAuthenticated){
-        fetch('/user-name')
+        fetch(`${BASE_URL}/user-name`)
         .then(res => res.json())
         .then(data => {
             setUsername(data.username);

@@ -6,6 +6,8 @@ import TableFooter from './TableFooter';
 import TableHeader from './TableHeader';
 import usePrevious from './hooks/usePrevious';
 
+const BASE_URL = 'https://spotify-app-demo.herokuapp.com';
+
 const TableContainer = ({url, dataProp}) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +27,7 @@ const TableContainer = ({url, dataProp}) => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(url)
+        fetch(`${BASE_URL}/${url}`)
             .then(res => {
                 if(!res.ok) throw Error(res.json());
                 return res.json();
