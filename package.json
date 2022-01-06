@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "concurrently \"react-scripts start\" \"PORT=5000 node server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd front-app && npm install && npm run build"
   },
@@ -12,6 +12,7 @@
   "author": "Gaurav Shah",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^7.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
