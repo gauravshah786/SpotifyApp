@@ -224,7 +224,7 @@ app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname + '/front-app/build/index.html'))
 })
 
-app.set('port', 5000);
-const server = app.listen(app.get('port'), () => {
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
