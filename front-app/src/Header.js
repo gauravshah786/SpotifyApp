@@ -10,8 +10,8 @@ import {
     StyledUsername
 } from './StyledComponents';
 
-const LOGIN_URL = 'http://localhost:5000/login';
-const LOGOUT_URL = 'http://localhost:5000/logout';
+const LOGIN_URL = 'https://spotify-app-demo.herokuapp.com:5000/login';
+const LOGOUT_URL = 'https://spotify-app-demo.herokuapp.com:5000/logout';
 
 const StyledContainer = styled(StyledFlexDiv)`
     padding-right: 1rem;
