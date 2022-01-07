@@ -4,10 +4,17 @@ import styled from 'styled-components';
 import Content from './Content';
 import Header from './Header';
 import getCookie from './getCookie';
+import { StyledFlexDiv } from './StyledComponents';
 
 const StyledApp = styled.div`
   text-align: center;
 `;
+
+const StyledFooter = styled(StyledFlexDiv)`
+  height: 5rem;
+`
+
+const SOURCE_CODE = 'https://github.com/gauravshah786/SpotifyApp';
 
 const App = () => {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -25,11 +32,15 @@ const App = () => {
           <Header 
             isUserAuthenticated={isUserAuthenticated}
             setIsUserAuthenticated={setIsUserAuthenticated} />
-            {
-                isUserAuthenticated 
-                ? <Content/>
-                : <></>
-            }
+          {
+              isUserAuthenticated 
+              ? <Content/>
+              : <></>
+          }
+          <StyledFooter>
+            Enjoy &hearts; the music :-)
+            Check the <a target='_blank' href={SOURCE_CODE} rel="noreferrer">source code</a>
+          </StyledFooter>
         </StyledApp>
     );
 }
