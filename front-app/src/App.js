@@ -4,14 +4,17 @@ import styled from 'styled-components';
 import Content from './Content';
 import Header from './Header';
 import getCookie from './getCookie';
-import { StyledFlexDiv } from './StyledComponents';
 
 const StyledApp = styled.div`
   text-align: center;
 `;
 
-const StyledFooter = styled(StyledFlexDiv)`
+const StyledFooter = styled.footer`
+  bottom: 0;
   height: 5rem;
+  left: 0;
+  position: fixed;
+  width: 100%;
 `
 
 const SOURCE_CODE = 'https://github.com/gauravshah786/SpotifyApp';
