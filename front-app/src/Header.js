@@ -27,7 +27,6 @@ const Header = ({isUserAuthenticated, setIsUserAuthenticated}) => {
             setUsername(data.username);
         }).catch(e => {
             setIsUserAuthenticated(false);
-            sessionStorage.clear();
         });
     }
 

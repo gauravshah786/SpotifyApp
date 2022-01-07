@@ -20,15 +20,15 @@ const StyledTab = styled.li`
   }
 `;
 
-const Tab = ({ active, label, onClick }) => { 
+const handleClick = (onClick, label) => {
+  onClick(label);
+}
 
-    const handleClick = () => {
-      onClick(label);
-    }
-
+const Tab = ({ active, label, onClick }) => {
     return (
-      <StyledTab id={label} active={active} onClick={handleClick}> 
-        {label} 
+      <StyledTab id={label} active={active} 
+        onClick={() => handleClick(onClick, label)}> 
+        {label}
       </StyledTab>
     );
 }
