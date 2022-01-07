@@ -38,8 +38,11 @@ const App = () => {
               : <></>
           }
           <StyledFooter>
-            Enjoy &hearts; the music :-)
-            Check the <a target='_blank' href={SOURCE_CODE} rel="noreferrer">source code</a>
+            <p>
+              Enjoy &hearts; the music :)
+              <br/><br/>
+              Check the <a target='_blank' href={SOURCE_CODE} rel="noreferrer">source code</a>
+            </p>
           </StyledFooter>
         </StyledApp>
     );
