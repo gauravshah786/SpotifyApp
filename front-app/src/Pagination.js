@@ -27,7 +27,7 @@ const Pagination = props => {
     return null;
   }
 
-  if(paginationRange.lenngth < 2) {
+  if(paginationRange.length < 2) {
     return (
       <StyledFlexDiv>
         <StyledListItem key={`pageNumber1`} selected> 1 </StyledListItem>
