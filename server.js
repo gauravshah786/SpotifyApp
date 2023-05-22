@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
 const path = require('path');
 const spotify = require('./credentials');
 
-const clientUrl = process.env.CLIENT_URL;
+// const clientUrl = "/";
 
 const app = express();
 
@@ -91,11 +91,11 @@ const handleCallbackResponse = (req, res, next) => {
         // in prod, you would have user/session id generated and saved in db
         // implementing simple cookie for storage less demo
         res.cookie('authenticated', true);
-        res.redirect(`${clientUrl}`);
+        res.redirect(`/`);
       })
       .catch(e => console.log(e)); // for demo app, errors aren't handled
   } else {
-    res.redirect(`${clientUrl}`);
+    res.redirect(`/`);
   }
 };
 
@@ -209,7 +209,7 @@ const TOP_TRACKS_2021 =
 const handleLogout = (_, res) => {
   res.clearCookie('accessToken');
   res.clearCookie('authenticated');
-  res.redirect(`${clientUrl}`);
+  res.redirect(`/`);
 }
 
 app.get('/login', authorizeSpotify);
