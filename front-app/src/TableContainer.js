@@ -6,7 +6,7 @@ import TableFooter from './TableFooter';
 import TableHeader from './TableHeader';
 import usePrevious from './hooks/usePrevious';
 
-const BASE_URL = 'https://spotify-app-demo.herokuapp.com';
+const BASE_URL = 'https://spotify-app-demo.onrender.com';
 
 const TableContainer = ({url, dataProp}) => {
     const [data, setData] = useState([]);

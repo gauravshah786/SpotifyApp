@@ -10,7 +10,7 @@ import {
     StyledUsername
 } from './StyledComponents';
 
-const BASE_URL = 'https://spotify-app-demo.herokuapp.com';
+const BASE_URL = 'https://spotify-app-demo.onrender.com';
 const LOGIN_URL = `${BASE_URL}/login`;
 const LOGOUT_URL = `${BASE_URL}/logout`;
 
